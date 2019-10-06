@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Budget Planner</title>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/css/ionic.bundle.css"/>
+    
+</head>
+<body>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="primary">
+                <ion-title>
+                    Budget Planner
+                </ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size-md="6" offset-md="3">
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Expenses</ion-card-title>
+                            </ion-card-header>          
+                        
+                            <ion-card-content>
+                                <ion-item>
+                                    <ion-label position="floating">Expnese Reason</ion-label>
+                                    <ion-input id="input-reason"></ion-input>
+                                </ion-item>
+                    
+                                <ion-item>
+                                    <ion-label position="floating">Expense Amount</ion-label>
+                                    <ion-input type="number" id="input-amount"></ion-input>
+                                </ion-item>
+
+                                <div class="ion-margin-top">
+                                    <ion-button color="danger" id="button-cancel">Clear
+                                            <ion-icon name="close" slot="start"></ion-icon>
+                                    </ion-button>
+                                    <ion-button color="success" id="button-add">Add
+                                            <ion-icon name="add" slot="start"></ion-icon>
+                                    </ion-button>                          
+                                </div>
+                            </ion-card-content>
+                        </ion-card>                                                            
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-content>
+    </ion-app>
+
+    <script src="app.js"></script>
+    <script>
+        var content = document.querySelector('ion-content');
+        content.scrollEvents = true;
+        content.addEventListener('ionScrollStart', () => console.log('scroll start'));
+        content.addEventListener('ionScroll', (ev) => console.log('scroll', ev.detail));
+        content.addEventListener('ionScrollEnd', () => console.log('scroll end'));
+    </script>
+</body>
+</html>
