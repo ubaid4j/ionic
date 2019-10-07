@@ -1,9 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>recipe-detail</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Detail of {{recipie.title}}</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid class="ion-no-padding">
+        <ion-row>
+            <ion-col class="ion-no-padding">
+                <ion-img [src]="recipie.imageURL"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <h1 class="ion-text-center">{{recipie.title}}</h1>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-list *ngFor="let gr of recipie.ingredients">
+                    <ion-item>
+                        <ion-label>
+                            {{gr}}
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
 
+    </ion-grid>
 </ion-content>
