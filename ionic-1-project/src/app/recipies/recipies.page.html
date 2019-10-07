@@ -1,9 +1,20 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>recipies</ion-title>
+        <ion-title>Recipies</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-list>
+        <ion-list *ngFor="let recepi of recipies">
+            <ion-item>
+                <ion-avatar slot="start">
+                    <ion-img [src]="recepi.imageURL"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    {{recepi.title}}
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-list>
 </ion-content>
