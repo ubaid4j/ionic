@@ -1,9 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>discover</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>discover</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>{{places[0].title}}</ion-card-title>
+                        <ion-card-subtitle>{{places[0].price | currency}}</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-img [src]="places[0].imageURL"></ion-img>
+                        <p>{{places[0].description}}</p>
+                    </ion-card-content>
+                    <div>
+                        <ion-button
+                                fill="clear"
+                                color="primary"
+                                [routerLink]="['/', 'places', 'tabs', 'discover', places[0].id]"
+                                router-direction="forward">
+                        </ion-button>
+                    </div>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item *ngFor="let place of places"
+                    [routerLink]="['/', 'places', 'tabs', 'discover', place.id]"
+                    detail="">
+                        <ion-thumbnail>
+                            <ion-img [src]="place.imageURL"></ion-img>
+                            <ion-label>
+                                <h2>{{place.title}}</h2>
+                                <p>{{place.description}}</p>
+                            </ion-label>
+                        </ion-thumbnail>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
