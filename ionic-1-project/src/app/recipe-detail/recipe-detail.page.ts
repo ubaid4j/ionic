@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RecipesService} from '../services/recipes.service';
 import {Recipie} from '../recipies/recipies.model';
+import {AlertController} from '@ionic/angular';
 
 @Component({
     selector: 'app-recipe-detail',
@@ -12,7 +13,16 @@ export class RecipeDetailPage implements OnInit {
 
     recipie: Recipie;
     constructor(private acRouter: ActivatedRoute,
-                private recepieService: RecipesService) { }
+                private recepieService: RecipesService,
+                private router: Router,
+                private alertCont: AlertController) {
+        // this.router.routeReuseStrategy.shouldReuseRoute = function(){
+        //     return false;
+        // }
+        // this.router.routeReuseStrategy.shouldReuseRoute = () => {
+        //     return false;
+        // };
+    }
 
     ngOnInit() {
         console.log('on init recipie detail');
@@ -27,4 +37,23 @@ export class RecipeDetailPage implements OnInit {
         });
     }
 
+    public deleteCurrentRecipe(): void {
+        this.alertCont.create({
+            header: 'Delete',
+            message: 'Are you sure to delete ' + this.recipie.title,
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                }, {
+                    text: 'Delete',
+                    handler: value => {
+                        this.recepieService.deleteRecipe(this.recipie.id);
+                        this.router.navigate(['/recipies']).then(r => {
+                        });
+                    }
+                }
+            ]
+        }).then(r => r.present());
+    }
 }

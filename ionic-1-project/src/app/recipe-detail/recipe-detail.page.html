@@ -1,6 +1,16 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
         <ion-title>Detail of {{recipie.title}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="deleteCurrentRecipe()">
+                <ion-icon slot="icon-only" name="trash">
+
+                </ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 

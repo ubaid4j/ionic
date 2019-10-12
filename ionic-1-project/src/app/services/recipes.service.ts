@@ -30,11 +30,19 @@ export class RecipesService {
     ];
     constructor() { }
     public getRecipes(): Recipie[] {
-        return [...this.recipies];
+        // return [...this.recipies];
+        console.log(this.recipies);
+        return this.recipies;
     }
     public findRecipe(id: string): Recipie {
         return {...this.recipies.find(recipe => {
            return recipe.id === id;
         })};
+    }
+    public deleteRecipe(id: string): void {
+        // simply filter return an array on the predicate
+        this.recipies = this.recipies.filter(recepie => {
+            return recepie.id !== id;
+        });
     }
 }

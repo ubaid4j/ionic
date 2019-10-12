@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
         <ion-title>Recipies</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -7,7 +7,7 @@
 <ion-content>
     <ion-list>
         <ion-list *ngFor="let recepi of recipies">
-            <ion-item>
+            <ion-item [routerLink]="['./', recepi.id]">
                 <ion-avatar slot="start">
                     <ion-img [src]="recepi.imageURL"></ion-img>
                 </ion-avatar>
