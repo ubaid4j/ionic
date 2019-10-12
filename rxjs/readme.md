@@ -14,4 +14,21 @@
         </ol>
     </li>
     <li>throttleTime: this take milliseconds as input</li>
+    <li>We can create observer object and pass it in the subscribe method of fromEvent</li>
+    <li>We can create Observable from scratch</li>
+    <li>We can unsubscribe the Observable subscription</li>
+    <li>Interval</li>
+    <li>Subject</li>
+    <li>Filter</li>
+    <li>DebounceTime</li>
+    <li>DistinctUntilChanged</li>
+    <li>Reduce</li>
+    <li>Scan</li>
+    <li>Pluck</li>
+    Not Implemented
+    <ol>
+        <li>Merge Map</li>
+        <li>Switch Map</li>
+        <li>Subject behaviour</li>
+    </ol>
 </ol>
