@@ -19,7 +19,7 @@ export class RecipesService {
         {
             id: '2',
             title: 'Baryani',
-            imageURL: 'http://www.hansonfoods.com.pk/kj-content/uploads/2013/10/muton-baryani.jpg',
+            imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu77hdAQY18uvR0IyfwOo8kDQYtWNDpWgbsWMoIvZOwAZKaY_L',
             ingredients: [
                 'Chawal',
                 'Chicken',

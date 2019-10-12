@@ -6,3 +6,10 @@
     <li>ionic capacitor copy android</li>
     <li>ionic capacitor run android</li>
 </ol>
+<h3>Routing</h3>
+<ol>
+    <li>ionViewWillEnter</li>
+    <li>ionViewDidEnter</li>
+    <li>ionViewWillLeave</li>
+    <li>ionViewDidLeave</li>
+</ol>

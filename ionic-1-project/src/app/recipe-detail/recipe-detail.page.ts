@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RecipesService} from '../services/recipes.service';
 import {Recipie} from '../recipies/recipies.model';
@@ -9,9 +9,9 @@ import {AlertController} from '@ionic/angular';
     templateUrl: './recipe-detail.page.html',
     styleUrls: ['./recipe-detail.page.scss'],
 })
-export class RecipeDetailPage implements OnInit {
+export class RecipeDetailPage implements OnInit, OnDestroy {
 
-    recipie: Recipie;
+    recipie: Recipie = null;
     constructor(private acRouter: ActivatedRoute,
                 private recepieService: RecipesService,
                 private router: Router,
@@ -25,15 +25,15 @@ export class RecipeDetailPage implements OnInit {
     }
 
     ngOnInit() {
-        console.log('on init recipie detail');
+        console.log('ngOnInit');
         this.acRouter.paramMap.subscribe(paramMap => {
             const id = paramMap.get('recipeId');
-            console.log(id);
+            // console.log(id);
             if (id == null) {
                 return;
             }
             this.recipie = this.recepieService.findRecipe(id);
-            console.log(this.recipie);
+            // console.log(this.recipie);
         });
     }
 
@@ -55,5 +55,24 @@ export class RecipeDetailPage implements OnInit {
                 }
             ]
         }).then(r => r.present());
+    }
+
+    ionViewWillEnter() {
+        // const id = this.acRouter.snapshot.paramMap.get('recipeId');
+        // this.recipie = this.recepieService.findRecipe(id);
+        console.log('ionViewWillEnter');
+    }
+    ionViewDidEnter() {
+        console.log('ionViewDidEnter');
+    }
+    ionViewWillLeave() {
+        console.log('ionViewWillLeave');
+    }
+    ionViewDidLeave() {
+        console.log('ionViewDidLeave');
+    }
+
+    ngOnDestroy(): void {
+        console.log('ngOnDestroy');
     }
 }
