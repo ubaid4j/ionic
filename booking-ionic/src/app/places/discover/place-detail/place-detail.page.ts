@@ -11,7 +11,7 @@ import {Place} from '../../../model/place/place';
     styleUrls: ['./place-detail.page.scss'],
 })
 export class PlaceDetailPage implements OnInit {
-    protected  place: Place = null;
+    public  place: Place = null;
     constructor(private router: Router,
                 private modelController: ModalController,
                 private placeService: PlacesService,

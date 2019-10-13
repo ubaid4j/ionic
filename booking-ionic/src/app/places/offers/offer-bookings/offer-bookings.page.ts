@@ -11,7 +11,7 @@ import {PlacesService} from '../../../service/places/places.service';
 })
 export class OfferBookingsPage implements OnInit {
 
-    protected place: Place = null;
+    public place: Place = null;
     constructor(private activateRoute: ActivatedRoute,
                 private navCont: NavController,
                 private placeService: PlacesService) { }
