@@ -15,4 +15,7 @@ export class DiscoverPage implements OnInit {
         this.places = this.placeService.getPlaces();
     }
 
+    public onFilterUpdate($event: CustomEvent) {
+        console.log($event.detail);
+    }
 }
