@@ -1,6 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>Discover Places</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button slot="start"></ion-menu-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -38,7 +41,7 @@
                         <ion-thumbnail>
                             <ion-img [src]="place.imageURL"></ion-img>
                         </ion-thumbnail>
-                        <ion-label padding-start>
+                        <ion-label class="ion-padding-start">
                             <h2>{{place.title}}</h2>
                             <p>{{place.description}}</p>
                         </ion-label>
