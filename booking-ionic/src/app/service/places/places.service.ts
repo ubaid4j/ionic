@@ -35,4 +35,10 @@ export class PlacesService {
     public getPlaces(): Place[] {
         return  [...this.places];
     }
+
+    find(placeId: string) {
+        return this.places.find(place => {
+            return place.id === placeId;
+        });
+    }
 }
