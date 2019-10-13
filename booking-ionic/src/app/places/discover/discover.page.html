@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>discover</ion-title>
+        <ion-title>Discover Places</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -23,6 +23,7 @@
                                 color="primary"
                                 [routerLink]="['/', 'places', 'tabs', 'discover', places[0].id]"
                                 router-direction="forward">
+                            More
                         </ion-button>
                     </div>
                 </ion-card>
@@ -31,16 +32,16 @@
         <ion-row>
             <ion-col>
                 <ion-list>
-                    <ion-item *ngFor="let place of places"
+                    <ion-item *ngFor="let place of places.slice(1)"
                     [routerLink]="['/', 'places', 'tabs', 'discover', place.id]"
                     detail="">
                         <ion-thumbnail>
                             <ion-img [src]="place.imageURL"></ion-img>
-                            <ion-label>
-                                <h2>{{place.title}}</h2>
-                                <p>{{place.description}}</p>
-                            </ion-label>
                         </ion-thumbnail>
+                        <ion-label padding-start>
+                            <h2>{{place.title}}</h2>
+                            <p>{{place.description}}</p>
+                        </ion-label>
                     </ion-item>
                 </ion-list>
             </ion-col>
