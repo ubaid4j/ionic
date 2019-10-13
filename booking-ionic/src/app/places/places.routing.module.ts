@@ -11,7 +11,7 @@ const routes: Routes = [
         {path: '', redirectTo: '/places/tabs/discover', pathMatch: 'full'},
         {path: 'discover',
         children: [
-            {path: '', loadChildren: 'src/app/places/discover/discover.module#DiscoverPageModule'},
+            {path: '', loadChildren: './discover/discover.module#DiscoverPageModule'},
             {path: ':placeId', loadChildren: './discover/place-detail/place-detail.module#PlaceDetailPageModule'}
         ]},
         {path: 'offers',
