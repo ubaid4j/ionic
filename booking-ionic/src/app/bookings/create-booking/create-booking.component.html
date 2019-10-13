@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Create Booking</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="onCancel()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="ion-align-items-center ion-text-center">
+        <ion-row>
+            <ion-col>
+                <h1>{{selectedPlace.title}}</h1>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <p>{{selectedPlace.description}}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="onBook()">Book</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
