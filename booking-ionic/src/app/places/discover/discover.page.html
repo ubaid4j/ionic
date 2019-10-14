@@ -17,17 +17,24 @@
             Bookable Places
         </ion-segment-button>
     </ion-segment>
-    <ion-grid>
+    <ion-grid *ngIf="relevantPlaces && relevantPlaces.length <= 0">
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <p>There are no bookable places</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="relevantPlaces && relevantPlaces.length > 0">
         <ion-row>
             <ion-col>
                 <ion-card>
                     <ion-card-header>
-                        <ion-card-title>{{places[0].title}}</ion-card-title>
-                        <ion-card-subtitle>{{places[0].price | currency}}</ion-card-subtitle>
+                        <ion-card-title>{{relevantPlaces[0].title}}</ion-card-title>
+                        <ion-card-subtitle>{{relevantPlaces[0].price | currency}}</ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                        <ion-img [src]="places[0].imageURL"></ion-img>
-                        <p>{{places[0].description}}</p>
+                        <ion-img [src]="relevantPlaces[0].imageURL"></ion-img>
+                        <p>{{relevantPlaces[0].description}}</p>
                     </ion-card-content>
                     <div>
                         <ion-button
@@ -43,7 +50,7 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <ion-virtual-scroll [items]="places" approxItemHeight="73px">
+                <ion-virtual-scroll [items]="relevantPlaces" approxItemHeight="73px">
                     <ion-item *virtualItem="let place"
                     [routerLink]="['/', 'places', 'tabs', 'discover', place.id]"
                     detail="">

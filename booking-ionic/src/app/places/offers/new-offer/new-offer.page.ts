@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PlacesService} from '../../../service/places/places.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {LoadingController} from '@ionic/angular';
+import {Place} from '../../../model/place/place';
 
 export interface Data {
     title: string;
@@ -21,7 +23,8 @@ export class NewOfferPage implements OnInit {
 
     public form: FormGroup;
     constructor(private placeService: PlacesService,
-                private router: Router) { }
+                private router: Router,
+                private loadingCtrl: LoadingController) { }
 
     ngOnInit() {
         this.form = new FormGroup({
@@ -45,9 +48,21 @@ export class NewOfferPage implements OnInit {
     }
 
     public onCreateOffer() {
-        const data: Data = this.form.value;
-        this.placeService.addPlace(data.title, data.description, data.price, data.dateFrom, data.dateTo);
-        this.form.reset();
-        this.router.navigate(['/places/tabs/offers']).then();
+        this.loadingCtrl.create({message: 'Create Offer....'}).then((loader) => {
+            loader.present().then();
+
+            const data: Data = this.form.value;
+            this.placeService
+                .addPlace(data.title, data.description, data.price, data.dateFrom, data.dateTo)
+                .subscribe((places: Place[]) => {
+                    loader.dismiss().then();
+                    this.form.reset();
+                    this.router.navigate(['/places/tabs/offers']).then();
+                });
+        });
+
+        // const data: Data = this.form.value;
+        // this.placeService.addPlace(data.title, data.description, data.price, data.dateFrom, data.dateTo);
+
     }
 }
