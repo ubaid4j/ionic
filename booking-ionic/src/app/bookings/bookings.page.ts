@@ -22,4 +22,5 @@ export class BookingsPage implements OnInit {
         console.log(id);
         // cancel booking
     }
+
 }

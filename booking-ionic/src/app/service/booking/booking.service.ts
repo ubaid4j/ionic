@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Booking} from '../../model/booking/booking';
 
 @Injectable({
@@ -11,9 +11,11 @@ export class BookingService {
         new Booking('3', '3', '3', 'Attock', 2),
         new Booking('4', '4', '4', 'Hazara', 2)
     ];
+
     constructor() {
     }
+
     public getBookigs(): Booking[] {
-        return  this.bookings;
+        return this.bookings;
     }
 }
