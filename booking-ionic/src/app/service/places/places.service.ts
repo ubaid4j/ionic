@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Place} from '../../model/place/place';
 import {AuthService} from '../auth/auth.service';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {delay, map, take, tap} from 'rxjs/operators';
+import {delay, map, switchMap, take, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +53,8 @@ export class PlacesService {
             ),
         ]);
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private http: HttpClient) {
     }
 
     public getPlaces(): Observable<Place[]> {
@@ -82,12 +84,33 @@ export class PlacesService {
         const newPlace = new Place(Math.random().toString(), title, description,
             'https://i0.wp.com/tripadvisor.wpengine.com/wp-content/uploads/2018/10/kenai-fords-national-park-alaska.jpg?quality=85&w=627',
             price, dateFrom, dateTo, this.authService.userId);
+        let generatedId: string = null;
+        // post
+        // this.http.post('https://root1-d3de6.firebaseio.com/offerd-places.json',
+        //     {...newPlace, id: null}).pipe(tap((responseData) => {
+        //         console.log(responseData);
+        //         const name = 'name';
+        //         generatedId = responseData[name];
+        //         console.log(generatedId);
+        // })).subscribe();
+        return this.http.post('https://root1-d3de6.firebaseio.com/offerd-places.json',
+            {newPlace, id: null}).pipe(switchMap(param => {
+                console.log(param);
+                const name = 'name';
+                generatedId = param[name];
+                return this.places;
+        }), take(1), tap(places => {
+            newPlace.id = generatedId;
+            places.push(newPlace);
+            this._places.next(places);
+            // this._places.next(this._places.getValue().concat(newPlace));
+        }));
         // this.places.push(newPlace);
         // we can write different methods in the pipe
         // take give param and do unsubscribe after param subscription
-        return this.places.pipe(take(1), delay(1000), tap((places: Place[]) => {
-            this._places.next(this._places.getValue().concat(newPlace));
-        }));
+        // return this.places.pipe(take(1), delay(1000), tap((places: Place[]) => {
+        //     this._places.next(this._places.getValue().concat(newPlace));
+        // }));
     }
     public updatePlace(placeId: string, title: string, description: string): Observable<Place[]> {
         return  this.places.pipe(take(1), delay(1000), tap((places: Place[]) => {
