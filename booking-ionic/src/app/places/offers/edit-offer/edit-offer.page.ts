@@ -13,6 +13,8 @@ import {LoadingController} from '@ionic/angular';
 })
 export class EditOfferPage implements OnInit, OnDestroy {
     form: FormGroup;
+    // tslint:disable-next-line:variable-name
+    private _isLoading = true;
     private placeSubscription: Subscription;
     private placeId: string = null;
     constructor(private placeService: PlacesService,
@@ -27,8 +29,14 @@ export class EditOfferPage implements OnInit, OnDestroy {
             this.placeId = id;
             // const offer = this.placeService.find(id);
             // this.setForm(offer);
-            this.placeSubscription = this.placeService.find(id).subscribe((offer: Place) => {
-                this.setForm(offer);
+            // this.placeSubscription = this.placeService.find(id).subscribe((offer: Place) => {
+            //     this.setForm(offer);
+            // });
+
+            this.placeSubscription = this.placeService.getPlace(id).subscribe((data: Place) => {
+                console.log(data);
+                this.setForm(data);
+                this.isLoading = false;
             });
         });
     }
@@ -46,7 +54,6 @@ export class EditOfferPage implements OnInit, OnDestroy {
     }
 
     public onUpdateForm(): void {
-        console.log(this.form);
         const title: string = this.form.value.title;
         const description: string = this.form.value.description;
         this.loadingCtrl.create({message: 'Updating Place'}).then((element) => {
@@ -64,5 +71,11 @@ export class EditOfferPage implements OnInit, OnDestroy {
             this.placeSubscription.unsubscribe();
         }
     }
+    get isLoading(): boolean {
+        return this._isLoading;
+    }
 
+    set isLoading(value: boolean) {
+        this._isLoading = value;
+    }
 }

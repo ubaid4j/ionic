@@ -39,13 +39,11 @@ export class AuthPage implements OnInit {
     }
 
     public onSubmit(f: NgForm) {
-        console.log(f);
         if (!f.valid) {
             return;
         }
         const email = f.value.email;
         const password = f.value.password;
-        console.log(email, password);
         if (this.isLogin) {
             // send request to login server
         } else {

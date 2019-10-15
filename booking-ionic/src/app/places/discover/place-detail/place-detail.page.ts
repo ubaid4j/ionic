@@ -74,7 +74,6 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
     //                       firstName: string, lastName: string, guestNumber: number,
     //                       dateFrom: Date, dateTo: Date)
     public openBookingModal(mode: 'select' | 'random') {
-        console.log(mode);
         this.modelController.create({
             component: CreateBookingComponent,
             componentProps: {selectedPlace: this.place}

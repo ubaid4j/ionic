@@ -55,7 +55,6 @@ export class NewOfferPage implements OnInit {
             this.placeService
                 .addPlace(data.title, data.description, data.price, data.dateFrom, data.dateTo)
                 .subscribe((places: Place[]) => {
-                    console.log(places);
                     loader.dismiss().then();
                     this.form.reset();
                     this.router.navigate(['/places/tabs/offers']).then();

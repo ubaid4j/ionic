@@ -13,7 +13,23 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
+    <ion-grid *ngIf="isLoading">
+        <ion-row class="ion-margin">
+            <ion-col class="ion-text-center">
+                <ion-spinner></ion-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="places && !isLoading && places.length <= 0">
+        <ion-row class="ion-margin">
+            <ion-col class="ion-text-center">
+                <ion-text>There is no offers. Please create offers</ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="!isLoading && places.length > 0">
         <ion-row>
             <ion-col>
                 <ion-list>

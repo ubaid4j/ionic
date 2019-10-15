@@ -24,7 +24,6 @@ export class BookingsPage implements OnInit {
 
     cancelBooking(id: string, ionItemSliding: IonItemSliding) {
         ionItemSliding.close().then();
-        console.log(id);
         // cancel booking
         this.loadingCtrl.create({message: 'Cancelling Booking'}).then((element) => {
             element.present().then();
